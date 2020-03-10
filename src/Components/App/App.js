@@ -29,9 +29,46 @@ class App extends React.Component {
           album: 'album3',
           id: 'id3'
         }
+      ],
+      playlistName: 'My playlist',
+      playlistTracks: [
+        {
+          name: 'name4',
+          artist: 'artist4',
+          album: 'album4',
+          id: 'id4'
+        },
+        {
+          name: 'name5',
+          artist: 'artist5',
+          album: 'album5',
+          id: 'id5' 
+        },
+        {
+          name: 'name6',
+          artist: 'artist6',
+          album: 'album6',
+          id: 'id6'
+        }
       ]
     }
+    this.addTrack = this.addTrack.bind(this);
   }
+
+  addTrack(track) {
+     if (this.state.playlistTracks.find(savedTrack => 
+      savedTrack.id === track.id )) {
+        return;
+      } else {
+         this.state.playlistTracks.push(track);
+      };
+      //Revisar esta parte si no anda la nueva playlist, el objeto está vacío
+      this.setState({});
+  }
+
+
+   
+
   render() {
     return (
          <div>
@@ -39,8 +76,8 @@ class App extends React.Component {
              <div className="App">
                  <SearchBar />
                     <div className="App-playlist">
-                      <SearchResults searchResults={this.state.searchResults}/>
-                      <Playlist />
+                      <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
+                      <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
                     </div>
                </div>
            </div>
