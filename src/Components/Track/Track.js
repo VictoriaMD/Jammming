@@ -3,20 +3,20 @@ import './Track.css';
 
 
 class Track extends React.Component {
-    renderAction() {
+    renderAction(isRemoval) {
         if(isRemoval) {
-            <button className="Track-action" isRemoval={true}>-</button>
+          return <button className="Track-action" isRemoval={true}>-</button>
         } else {
-        <button className="Track-action" isRemoval={false}>+</button>
-        }
+          return <button className="Track-action" isRemoval={false}>+</button>
+        };
     }
 
     render () {
         return (
             <div className="Track">
   <div className="Track-information">
-    <h3><!-- track name will go here --></h3>
-    <p><!-- track artist will go here--> | <!-- track album will go here --></p>
+    <h3>{this.props.track.name}</h3>
+    <p>{this.props.track.artist} | {this.props.track.album}</p>
   </div>
   {this.renderAction()}
 </div>
